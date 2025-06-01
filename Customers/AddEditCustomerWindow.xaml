@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfApp1.Customers.AddEditCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Customers"
+        mc:Ignorable="d"
+        Title="Добавление/редактирование клиента" Height="350" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Имя:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" Name="FirstNameTextBox" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="2" Text="Фамилия:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="3" Name="LastNameTextBox" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="4" Text="Email:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="5" Name="EmailTextBox" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="6" Text="Телефон:" Margin="0,2,0,19"/>
+        <TextBox Grid.Row="6" Name="PhoneTextBox" Margin="0,24,0,-4"
+                 PreviewTextInput="PhoneTextBox_PreviewTextInput"
+                 PreviewKeyDown="PhoneTextBox_PreviewKeyDown"
+                 TextChanged="PhoneTextBox_TextChanged"
+                 GotFocus="PhoneTextBox_GotFocus"
+                 PreviewMouseDown="PhoneTextBox_PreviewMouseDown"
+                 LostFocus="PhoneTextBox_LostFocus"/>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,106,0,-106">
+            <Button Content="Сохранить" Name="SaveButton" Click="SaveButton_Click" 
+                    Style="{StaticResource ActionButtonStyle}" Margin="0,0,10,0"/>
+            <Button Content="Отмена" Name="CancelButton" Click="CancelButton_Click" 
+                    Style="{StaticResource NavigationButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+﻿<Page x:Class="WpfApp1.Products.ProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.Products"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Товары">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Товары" FontSize="20" Margin="10"/>
+
+        <DataGrid Grid.Row="1" Name="ProductsDataGrid" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" SelectionChanged="ProductsDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="2*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="Auto"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding StockQuantity}" Width="Auto"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding ManufacturerName}" Width="*"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Добавить" Name="AddButton" Click="AddButton_Click" 
+                    Style="{StaticResource ActionButtonStyle}" Margin="0,0,10,0"/>
+            <Button Content="Изменить" Name="EditButton" Click="EditButton_Click" 
+                    Style="{StaticResource ActionButtonStyle}" Margin="0,0,10,0"/>
+            <Button Content="Удалить" Name="DeleteButton" Click="DeleteButton_Click" 
+                    Style="{StaticResource ActionButtonStyle}"/>
+            <Button Content="Назад" Name="BackButton" Click="BackButton_Click" 
+                    Style="{StaticResource NavigationButtonStyle}" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Page>

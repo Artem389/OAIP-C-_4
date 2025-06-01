@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp1.Manufacturers.AddEditManufacturerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Manufacturers"
+        mc:Ignorable="d"
+        Title="Добавление/редактирование производителя" Height="350" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Название производителя:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" Name="NameTextBox" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="2" Text="Страна:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="3" Name="CountryTextBox" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="4" Text="Веб-сайт:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="4" Name="WebsiteTextBox" Margin="0,26,0,10"/>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Сохранить" Name="SaveButton" Click="SaveButton_Click" 
+                    Style="{StaticResource ActionButtonStyle}" Margin="0,0,10,0"/>
+            <Button Content="Отмена" Name="CancelButton" Click="CancelButton_Click" 
+                    Style="{StaticResource NavigationButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>
