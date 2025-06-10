@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp1.Products"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Товары">
+      Title="Товары" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
         <TextBlock Grid.Row="0" Text="Товары" FontSize="20" Margin="10"/>
 
         <DataGrid Grid.Row="1" Name="ProductsDataGrid" AutoGenerateColumns="False" 
-                  CanUserAddRows="False" SelectionChanged="ProductsDataGrid_SelectionChanged">
+                  CanUserAddRows="False" SelectionChanged="ProductsDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
                 <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="2*"/>

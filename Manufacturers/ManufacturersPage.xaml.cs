@@ -105,5 +105,10 @@ namespace WpfApp1.Manufacturers
         {
             EditButton.IsEnabled = DeleteButton.IsEnabled = ManufacturersDataGrid.SelectedItem != null;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            EditButton.IsEnabled = DeleteButton.IsEnabled = ManufacturersDataGrid.SelectedItem != null;
+        }
     }
 }

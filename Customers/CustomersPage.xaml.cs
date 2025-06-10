@@ -105,5 +105,10 @@ namespace WpfApp1.Customers
         {
             EditButton.IsEnabled = DeleteButton.IsEnabled = CustomersDataGrid.SelectedItem != null;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            EditButton.IsEnabled = DeleteButton.IsEnabled = CustomersDataGrid.SelectedItem != null;
+        }
     }
 }

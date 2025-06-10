@@ -103,5 +103,10 @@ namespace WpfApp1.Categories
         {
             EditButton.IsEnabled = DeleteButton.IsEnabled = CategoriesDataGrid.SelectedItem != null;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            EditButton.IsEnabled = DeleteButton.IsEnabled = CategoriesDataGrid.SelectedItem != null;
+        }
     }
 }

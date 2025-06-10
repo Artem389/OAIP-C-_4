@@ -7,9 +7,12 @@
     }
 }
 
-namespace WpfApp1.ElectronicsStoreDataSetTableAdapters {
-    
-    
+namespace WpfApp1.ElectronicsStoreDataSetTableAdapters
+{
+    partial class CategoriesTableAdapter
+    {
+    }
+
     public partial class OrdersTableAdapter {
     }
 }

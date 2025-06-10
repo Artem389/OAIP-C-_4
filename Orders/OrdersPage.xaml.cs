@@ -110,5 +110,10 @@ namespace WpfApp1.Orders
         {
             EditButton.IsEnabled = DeleteButton.IsEnabled = OrdersDataGrid.SelectedItem != null;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            EditButton.IsEnabled = DeleteButton.IsEnabled = OrdersDataGrid.SelectedItem != null;
+        }
     }
 }

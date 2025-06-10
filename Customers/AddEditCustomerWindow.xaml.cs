@@ -46,7 +46,7 @@ namespace WpfApp1.Customers
         }
 
         private string phoneFormat = "+7-___-___-__-__";
-        private bool isFormatting = false;
+        private bool isFormatting = false; // Флаг для предотвращения рекурсии при форматировании
         private int[] separatorPositions = { 2, 6, 10, 13 }; // Позиции статичных тире
 
         private void PhoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -57,8 +57,8 @@ namespace WpfApp1.Customers
             // Запрещаем ввод в позициях тире
             if (separatorPositions.Contains(caretPos))
             {
-                textBox.CaretIndex = caretPos + 1;
-                e.Handled = true;
+                textBox.CaretIndex = caretPos + 1; //перемещение курсора
+                e.Handled = true; //Отмена ввода
                 return;
             }
 
@@ -72,14 +72,14 @@ namespace WpfApp1.Customers
             // Получаем текущие цифры (без форматирования)
             string digits = GetDigitsFromPhone(textBox.Text);
 
-            // Если уже 10 цифр (без +7) и нет выделенного текста
+            // Проверка на наличие 10 цифр (без +7)
             if (digits.Length >= 10 && string.IsNullOrEmpty(textBox.SelectedText))
             {
                 e.Handled = true;
                 return;
             }
 
-            isFormatting = true;
+            isFormatting = true; 
 
             // Вставляем новую цифру
             int digitPos = GetDigitPosition(caretPos);
@@ -90,7 +90,7 @@ namespace WpfApp1.Customers
             textBox.CaretIndex = GetNextCursorPosition(caretPos);
 
             isFormatting = false;
-            e.Handled = true;
+            e.Handled = true; // Отменяем стандартную обработку
         }
 
         private void PhoneTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -187,8 +187,8 @@ namespace WpfApp1.Customers
 
             if (digitPos >= 0 && digitPos < digits.Length)
             {
-                digits = digits.Remove(digitPos, 1);
-                textBox.Text = FormatPhoneNumber(digits);
+                digits = digits.Remove(digitPos, 1); // Удаляем цифру
+                textBox.Text = FormatPhoneNumber(digits);// Обновляем формат
 
                 // После удаления оставляем курсор на той же позиции (если это возможно)
                 if (position > 0 && position <= textBox.Text.Length)
@@ -197,7 +197,7 @@ namespace WpfApp1.Customers
                     if (separatorPositions.Contains(position - 1))
                         textBox.CaretIndex = position - 1;
                     else
-                        textBox.CaretIndex = position;
+                        textBox.CaretIndex = position; // Возвращаем курсор на место
                 }
             }
 
@@ -215,18 +215,7 @@ namespace WpfApp1.Customers
             return currentPos + 1;
         }
 
-        private int GetPreviousCursorPosition(int currentPos)
-        {
-            if (currentPos <= 3) return 3; // После +7-
-
-            // Пропускаем тире
-            if (separatorPositions.Contains(currentPos - 1))
-                return currentPos - 2;
-
-            return currentPos - 1;
-        }
-
-        private int GetDigitPosition(int formattedPosition)
+        private int GetDigitPosition(int formattedPosition) // Получаем позицию цифры в неформатированной строке
         {
             if (formattedPosition <= 3) return 0; // Для +7-
 
@@ -363,7 +352,7 @@ namespace WpfApp1.Customers
         private void PhoneTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             var textBox = sender as TextBox;
-            if (textBox.Text.Length <= 3 || !IsValidPhoneFormat(textBox.Text))
+            if (textBox.Text.Length <= 3 || !IsValidPhoneFormat(textBox.Text)) // Всегда ставим курсор после "+7-"
             {
                 textBox.Text = phoneFormat.Replace('_', ' ');
             }

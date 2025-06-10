@@ -89,13 +89,23 @@ namespace WpfApp1.Products
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Parent is Frame frame)
+            if (this.NavigationService.CanGoBack)
             {
-                frame.GoBack();
+                this.NavigationService.GoBack();
+            }
+            else
+            {
+                new MainWindow().Show();
+                Window.GetWindow(this)?.Close();
             }
         }
 
         private void ProductsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EditButton.IsEnabled = DeleteButton.IsEnabled = ProductsDataGrid.SelectedItem != null;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             EditButton.IsEnabled = DeleteButton.IsEnabled = ProductsDataGrid.SelectedItem != null;
         }
